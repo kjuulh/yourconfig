@@ -1,4 +1,4 @@
-# 🌱 yourconfig
+# yourconfig
 
 A dead-simple Go library for loading config structs from environment variables — with optional tagging and required enforcement.
 
