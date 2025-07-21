@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://git.front.kjuulh.io/kjuulh/cuddle/raw/branch/main/schemas/base.json
+
+base: "git@git.front.kjuulh.io:kjuulh/cuddle-go-lib-plan.git"
+
+vars:
+  service: "yourconfig"
+  registry: kasperhermansen
+
+please:
+  project:
+    owner: kjuulh
+    repository: yourconfig
+    branch: main
+  settings:
+    api_url: https://git.front.kjuulh.io  
+
+scripts:
+  "ci:main":
+    type: shell
+  "ci:pr":
+    type: shell
+  "ci:release":
+    type: shell
+ 
