@@ -1,6 +1,7 @@
 # yourconfig
 
-A dead-simple Go library for loading config structs from environment variables — with optional tagging and required enforcement.
+A dead-simple Go library for loading config structs from environment variables —
+with optional tagging and required enforcement.
 
 ## 📦 Install
 
@@ -26,10 +27,10 @@ type Config struct {
 	OtherItem string `conf:"MY_ITEM"`
 
 	// Loads YET_ANOTHER optionally from env
-  YetAnother string `conf:""`
+	YetAnother string `conf:""`
 
 	// ignored field
-  Ignored string
+	Ignored string
 }
 
 func main() {
@@ -42,8 +43,8 @@ func main() {
 
 You configure fields using the `conf` struct tag:
 
-* **Custom env name:** First item (e.g. `conf:"MY_ENV"`)
-* **Options:** `key:value` or flags (e.g. `required:true`, or just `required`)
+- **Custom env name:** First item (e.g. `conf:"MY_ENV"`)
+- **Options:** `key:value` or flags (e.g. `required:true`, or just `required`)
 
 Examples:
 
@@ -65,14 +66,16 @@ SomeItem string `conf:"DIFFERENT_NAME,required"`
 
 // combine name and required (option)
 SomeItem string `conf:"DIFFERENT_NAME,required:true"`
-
 ```
 
 ## ❗ Required Fields
 
-If a field is marked `required` and the environment variable is **not set**, loading will return an error. Use `MustLoad[T]()` to panic on error, or `Load[T]() (T, error)` to handle it gracefully.
+If a field is marked `required` and the environment variable is **not set**,
+loading will return an error. Use `MustLoad[T]()` to panic on error, or
+`Load[T]() (T, error)` to handle it gracefully.
 
-Private (unexported) fields are ignored unless tagged — in which case they produce a `not settable` error, avoid setting `conf` on private items.
+Private (unexported) fields are ignored unless tagged — in which case they
+produce a `not settable` error, avoid setting `conf` on private items.
 
 ## License
 
@@ -81,9 +84,10 @@ MIT
 ## Contributing
 
 ```go
-go test ./...  
+go test ./...
 ```
 
 ## Release
 
-Releases are handled through cuddle-please a pr based release tool, simply merge the pr and a release will be cut
+Releases are handled through cuddle-please a pr based release tool, simply merge
+the pr and a release will be cut
