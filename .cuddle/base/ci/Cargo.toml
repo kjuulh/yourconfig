@@ -1,0 +1,17 @@
+[package]
+name = "ci"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio.workspace = true
+
+dagger-sdk = "0.17.1"
+eyre = { version = "0.6.12" }
+
+dagger-components = { git = "https://git.front.kjuulh.io/kjuulh/dagger-components", branch = "main" }
+dagger-rust = { git = "https://git.front.kjuulh.io/kjuulh/dagger-components", branch = "main" }
+cuddle-ci = { git = "https://git.front.kjuulh.io/kjuulh/dagger-components", branch = "main" }
+tracing-subscriber.workspace = true

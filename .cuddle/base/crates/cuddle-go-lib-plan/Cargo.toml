@@ -1,0 +1,15 @@
+[package]
+name = "cuddle-go-lib-plan"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio.workspace = true
+
+dagger-sdk = "0.17.1"
+eyre = { version = "0.6.12" }
+
+dagger-components = { git = "https://git.front.kjuulh.io/kjuulh/dagger-components", branch = "main" }
+dagger-rust = { git = "https://git.front.kjuulh.io/kjuulh/dagger-components", branch = "main" }
+cuddle-ci = { git = "https://git.front.kjuulh.io/kjuulh/dagger-components", branch = "main" }
+async-trait = "0.1.80"
