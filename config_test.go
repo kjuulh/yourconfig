@@ -24,7 +24,7 @@ func TestLoad(t *testing.T) {
 
 	t.Run("default tag, nothing set, no env set", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:""`
+			SomeItem      string `cfg:""`
 			someOtherItem string
 			someBool      bool
 		}
@@ -37,7 +37,7 @@ func TestLoad(t *testing.T) {
 
 	t.Run("default tag (required=true), nothing set, no env set, err", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:"required:true"`
+			SomeItem      string `cfg:"required:true"`
 			someOtherItem string
 			someBool      bool
 		}
@@ -51,7 +51,7 @@ func TestLoad(t *testing.T) {
 
 	t.Run("default tag (required=false), nothing set, no env set no error", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:"required:false"`
+			SomeItem      string `cfg:"required:false"`
 			someOtherItem string
 			someBool      bool
 		}
@@ -64,7 +64,7 @@ func TestLoad(t *testing.T) {
 
 	t.Run("env tag nothing set, no env set, no error", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:"SOME_ITEM"`
+			SomeItem      string `cfg:"SOME_ITEM"`
 			someOtherItem string
 			someBool      bool
 		}
@@ -77,7 +77,7 @@ func TestLoad(t *testing.T) {
 
 	t.Run("default tag (required=true), nothing set, no env set, err", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:"SOME_ITEM,required:true"`
+			SomeItem      string `cfg:"SOME_ITEM,required:true"`
 			someOtherItem string
 			someBool      bool
 		}
@@ -91,7 +91,7 @@ func TestLoad(t *testing.T) {
 
 	t.Run("default tag (required), nothing set, no env set, err", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:"SOME_ITEM,required"`
+			SomeItem      string `cfg:"SOME_ITEM,required"`
 			someOtherItem string
 			someBool      bool
 		}
@@ -106,7 +106,7 @@ func TestLoad(t *testing.T) {
 	t.Run("default tag private, trying to set, err", func(t *testing.T) {
 		type Config struct {
 			SomeItem      string
-			someOtherItem string `conf:"required:true"`
+			someOtherItem string `cfg:"required:true"`
 			someBool      bool
 		}
 
@@ -121,7 +121,7 @@ func TestLoad(t *testing.T) {
 
 	t.Run("env tag and env set, no error", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:"required:true"`
+			SomeItem      string `cfg:"required:true"`
 			someOtherItem string
 			someBool      bool
 		}
@@ -136,7 +136,7 @@ func TestLoad(t *testing.T) {
 
 	t.Run("env tag (different name) and env set, no error", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:"DIFFERENT_NAME,required:true"`
+			SomeItem      string `cfg:"DIFFERENT_NAME,required:true"`
 			someOtherItem string
 			someBool      bool
 		}
@@ -151,8 +151,8 @@ func TestLoad(t *testing.T) {
 
 	t.Run("multiple env tag and env set, no error", func(t *testing.T) {
 		type Config struct {
-			SomeItem      string `conf:"required:true"`
-			SomeOtherItem string `conf:"required:true"`
+			SomeItem      string `cfg:"required:true"`
+			SomeOtherItem string `cfg:"required:true"`
 			someBool      bool
 		}
 

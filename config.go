@@ -31,7 +31,7 @@ func Load[T any]() (T, error) {
 OUTER:
 	for i := 0; i < t.NumField(); i++ {
 		field := t.Field(i)
-		tagStr := field.Tag.Get("conf")
+		tagStr := field.Tag.Get("cfg")
 		if tagStr == "" {
 			continue
 		}
