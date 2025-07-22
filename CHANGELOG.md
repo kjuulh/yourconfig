@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2025-07-22
+
+### Added
+- add a global handler for getting items
+- rename tag
+
+### Other
+- Configure Renovate (#2)
+  Add renovate.json
+
 ## [0.0.1] - 2025-07-21
 
 ### Added
