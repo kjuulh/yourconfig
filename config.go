@@ -1,9 +1,9 @@
 package yourconfig
 
 import (
+	"context"
 	"errors"
 	"fmt"
-	"os"
 	"reflect"
 	"strconv"
 	"strings"
@@ -11,8 +11,17 @@ import (
 	"github.com/ettle/strcase"
 )
 
+func MustLoadContext[T any](ctx context.Context) T {
+	output, err := LoadContext[T](ctx)
+	if err != nil {
+		panic(fmt.Sprintf("must load: %s", err.Error()))
+	}
+
+	return output
+}
+
 func MustLoad[T any]() T {
-	output, err := Load[T]()
+	output, err := LoadContext[T](context.Background())
 	if err != nil {
 		panic(fmt.Sprintf("must load: %s", err.Error()))
 	}
@@ -21,6 +30,10 @@ func MustLoad[T any]() T {
 }
 
 func Load[T any]() (T, error) {
+	return LoadContext[T](context.Background())
+}
+
+func LoadContext[T any](ctx context.Context) (T, error) {
 	var cfg T
 
 	v := reflect.ValueOf(&cfg).Elem()
@@ -80,7 +93,11 @@ OUTER:
 			}
 		}
 
-		valueStr := os.Getenv(tag.Env)
+		valueStr, err := defaultLogger.Load().Get(ctx, tag.Env)
+		if err != nil {
+			errs = append(errs, fmt.Errorf("field: %s failed to load: %w", field.Name, err))
+			continue OUTER
+		}
 		if valueStr == "" && tag.Required {
 			errs = append(errs, fmt.Errorf("field: %s (env=%s) is not set and is required", field.Name, tag.Env))
 			continue OUTER
