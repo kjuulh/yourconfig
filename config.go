@@ -94,7 +94,7 @@ OUTER:
 		}
 
 		valueStr, err := defaultLogger.Load().Get(ctx, tag.Env)
-		if err != nil {
+		if err != nil && tag.Required {
 			errs = append(errs, fmt.Errorf("field: %s failed to load: %w", field.Name, err))
 			continue OUTER
 		}
