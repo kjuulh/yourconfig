@@ -165,4 +165,36 @@ func TestLoad(t *testing.T) {
 		assert.Equal(t, "some-item", val.SomeItem)
 		assert.Equal(t, "some-other-item", val.SomeOtherItem)
 	})
+
+	t.Run("required true, error returned", func(t *testing.T) {
+		type Config struct {
+			SomeItem      string
+			SomeOtherItem string `cfg:"required:true"`
+			someBool      bool
+		}
+
+		t.Setenv("SOME_OTHER_ITEM", "")
+
+		val, err := yourconfig.Load[Config]()
+		require.Error(t, err)
+		require.Zero(t, val)
+
+		assert.Equal(t, "config failed: field: SomeOtherItem (env=SOME_OTHER_ITEM) is not set and is required", err.Error())
+	})
+
+	t.Run("required false, no error returned", func(t *testing.T) {
+		type Config struct {
+			SomeItem      string
+			SomeOtherItem string `cfg:"required:false"`
+			someBool      bool
+		}
+
+		t.Setenv("SOME_OTHER_ITEM", "")
+
+		val, err := yourconfig.Load[Config]()
+		require.NoError(t, err)
+
+		assert.Zero(t, val)
+	})
+
 }
