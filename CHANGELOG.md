@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2025-11-13
+
+### Fixed
+- *(deps)* update module github.com/stretchr/testify to v1.11.1
+
 ## [0.0.3] - 2025-07-23
 
 ### Added
